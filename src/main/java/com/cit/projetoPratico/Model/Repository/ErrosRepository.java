@@ -8,4 +8,6 @@ import com.cit.projetoPratico.Model.Entity.ErrosEntity;
 @Repository
 public interface ErrosRepository extends PagingAndSortingRepository<ErrosEntity, Long> {
 
+	Iterable<ErrosEntity> findByDescriptionContainingIgnoreCase(String description);
+	
 }
