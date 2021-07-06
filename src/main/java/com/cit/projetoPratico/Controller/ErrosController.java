@@ -9,6 +9,7 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.ExampleMatcher.StringMatcher;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -75,16 +76,19 @@ public class ErrosController {
 	}
 	
 
-    @GetMapping("/api")
-    public ResponseEntity<?> find( ErrosEntity filtro ){
+    @GetMapping(path = "api/{pageNumber}/{itens}")
+    public ResponseEntity<?> find( ErrosEntity filtro, @PathVariable int pageNumber,@PathVariable int itens ){
     	
+		if (itens > 50 ) itens = 50;
+		Pageable page = PageRequest.of(pageNumber, itens);
+		
         ExampleMatcher matcher = ExampleMatcher.matching()
         							.withIgnoreNullValues()
                                     .withIgnoreCase()
                                     .withStringMatcher(StringMatcher.CONTAINING);
 
         Example<ErrosEntity> example = Example.of(filtro, matcher);
-        List<ErrosEntity> lista = jpaRepository.findAll(example);
+        List<ErrosEntity> lista = JpaRepository.findAll(example, page);
         return ResponseEntity.ok(lista);
     }
 
