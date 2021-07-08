@@ -1,5 +1,7 @@
 package com.cit.projetoPratico.Controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -13,7 +15,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.cit.projetoPratico.Model.Entity.ErrosEntity;
+import com.cit.projetoPratico.Model.Entity.LevelEnum;
 import com.cit.projetoPratico.Model.Repository.ErrosJpaRepository;
 import com.cit.projetoPratico.Model.Repository.ErrosRepository;
 
@@ -41,8 +43,7 @@ public class ErrosController {
 	public ErrosEntity saveErros(@RequestBody ErrosEntity errosEntity) {
 		repository.save(errosEntity);
 		return errosEntity;
-	}
-	
+	}	
 
 	@GetMapping(path = "/{pageNumber}/{itens}")
 	@ResponseBody
@@ -64,21 +65,6 @@ public class ErrosController {
 		return repository.findById(id).orElseThrow( () -> 
 		new ResponseStatusException(HttpStatus.NOT_FOUND, "Erro não encontrado"));
 	}
-	
-	@PutMapping
-	@ResponseBody
-	public ResponseEntity<?> update(@PathVariable Long id, @RequestBody ErrosEntity errosEntity) {
-		return repository
-				.findById(id)
-				
-				.map( erroId -> {
-					errosEntity.setId(erroId.getId());
-					repository.save(errosEntity);
-					
-					return ResponseEntity.ok(errosEntity);
-				}).orElseGet( () -> ResponseEntity.notFound().build() ); 	
-	}
-	
 
     @GetMapping(path = "api/{pageNumber}/{itens}")
     public ResponseEntity<?> find( ErrosEntity filtro, @PathVariable int pageNumber,@PathVariable int itens ){
@@ -96,5 +82,21 @@ public class ErrosController {
         return ResponseEntity.ok(lista);
     }
 
+    @GetMapping(path = "/level/{level}")
+    @ResponseStatus(code = HttpStatus.ACCEPTED)
+    public Iterable<ErrosEntity> listByLevel(@PathVariable LevelEnum level) {
+    	return jpaRepository.findByLevel(level);
+    }
+    
+//    public ResponseEntity<?> resumo() {    	
+//    	Optional<ErrosEntity> erros = jpaRepository.findByLevel(LevelEnum.ERROR);
+//    	Optional<ErrosEntity> worning = jpaRepository.findByLevel(LevelEnum.WARNING);
+//    	Optional<ErrosEntity> info = jpaRepository.findByLevel(LevelEnum.INFO);
+//    	
+//
+//    	
+//    	return ResponseEntity.ok(erros);
+//    }
+    
 	
 }

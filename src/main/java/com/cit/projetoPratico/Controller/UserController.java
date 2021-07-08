@@ -19,7 +19,7 @@ import com.cit.projetoPratico.Model.Repository.UserRepository;
 @RestController
 @RequestMapping("user")
 public class UserController {
-
+	
 	private UserRepository repository;
 
 	@Autowired
@@ -49,7 +49,7 @@ public class UserController {
 	@GetMapping("/name/{name}")
 	@ResponseStatus(code = HttpStatus.FOUND)
 	public UserEntity findByName(@PathVariable String name) {
-		return repository.findByNameContainingIgnoringCase(name)
+		return repository.findByNameContainingIgnoreCase(name)
 			.orElseThrow(() -> new ResponseStatusException(
 				HttpStatus.NOT_FOUND, "Desculpe, mas não consguir encontar o nome do Usuário!"
 			)); 
@@ -58,7 +58,7 @@ public class UserController {
 	@GetMapping("/email/{email}")
 	@ResponseStatus(code = HttpStatus.FOUND)
 	public UserEntity findByEmail(@PathVariable String email) {
-		return repository.findByEmailContainingIgnoringCase(email)
+		return repository.findByEmailContainingIgnoreCase(email)
 			.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Email do usuário não encontrado!"));
 	}
 	

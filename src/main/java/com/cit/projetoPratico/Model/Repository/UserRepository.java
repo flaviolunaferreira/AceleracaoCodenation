@@ -10,7 +10,7 @@ import com.cit.projetoPratico.Model.Entity.UserEntity;
 @Repository
 public interface UserRepository extends PagingAndSortingRepository<UserEntity, Long> {
 	
-	Optional<UserEntity> findByEmailContainingIgnoringCase(String email);
-	Optional<UserEntity> findByNameContainingIgnoringCase(String name);
+	Optional<UserEntity> findByEmailContainingIgnoreCase(String email);
+	Optional<UserEntity> findByNameContainingIgnoreCase(String name);
 
 }
