@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +27,8 @@ import com.cit.projetoPratico.Model.Entity.ErrosEntity;
 import com.cit.projetoPratico.Model.Entity.LevelEnum;
 import com.cit.projetoPratico.Model.Repository.ErrosJpaRepository;
 import com.cit.projetoPratico.Model.Repository.ErrosRepository;
+
+import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin(origins = "http://localhost:3000") //so requesições deste endereço que vão ser respondidas
 @RestController
@@ -38,14 +41,16 @@ public class ErrosController {
 	@Autowired
 	private ErrosJpaRepository jpaRepository;
 	
-	@PostMapping
+	@ApiOperation(value="Save a new error")
+	@RequestMapping(value = "/", method =  RequestMethod.POST, produces="application/json", consumes="application/json")
 	@ResponseStatus(code = HttpStatus.CREATED )
 	public ErrosEntity saveErros(@RequestBody ErrosEntity errosEntity) {
 		repository.save(errosEntity);
 		return errosEntity;
 	}	
-
-	@GetMapping(path = "/{pageNumber}/{itens}")
+	
+	@ApiOperation(value="Receive a list of errors by page number and number of items")
+	@RequestMapping(value = "/{pageNumber}/{itens}", method =  RequestMethod.GET, produces="application/json")
 	@ResponseBody
 	public Iterable<ErrosEntity> findAllPage(@PathVariable int pageNumber,@PathVariable int itens) {
 		if (itens > 50 ) itens = 50;
@@ -53,20 +58,24 @@ public class ErrosController {
 		return repository.findAll(page);
 	}
 	
-	@GetMapping(path = "/descricao/{description}")
+	@ApiOperation(value="Receive a list of errors with the description matching a string")
+	@RequestMapping(value = "/descricao/{string}", method =  RequestMethod.GET, produces="application/json")
 	@ResponseBody
-	public Iterable<ErrosEntity> findByDescription(@PathVariable String description) {
-		return repository.findByDescriptionContainingIgnoreCase(description);
+	public Iterable<ErrosEntity> findByDescription(@PathVariable String string) {
+		return repository.findByDescriptionContainingIgnoreCase(string);
 	}
 	
-	@GetMapping("/id/{id}")
+	@ApiOperation(value="Receive an error by id")
+	@RequestMapping(value = "/id/{id}", method =  RequestMethod.GET, produces="application/json")
 	@ResponseBody
 	public ErrosEntity getErrosById(@PathVariable Long id) { 			
 		return repository.findById(id).orElseThrow( () -> 
 		new ResponseStatusException(HttpStatus.NOT_FOUND, "Erro não encontrado"));
 	}
-
-    @GetMapping(path = "api/{pageNumber}/{itens}")
+	
+	@ApiOperation(value="Receive a list of errors filtered by attribute",
+			notes="Use optional params to filter the request (api/filter/{pageNumber}/{itens}?{attribute}={string})")
+	@RequestMapping(value = "filter/{pageNumber}/{itens}", method =  RequestMethod.GET, produces="application/json")
     public ResponseEntity<?> find( ErrosEntity filtro, @PathVariable int pageNumber,@PathVariable int itens ){
     	
 		if (itens > 50 ) itens = 50;
@@ -81,8 +90,9 @@ public class ErrosController {
         Page<ErrosEntity> lista = jpaRepository.findAll(example, page);
         return ResponseEntity.ok(lista);
     }
-
-    @GetMapping(path = "/level/{level}")
+	
+	@ApiOperation(value="Receive a list of errors filtered by level type")
+	@RequestMapping(value = "/level/{level}", method =  RequestMethod.GET, produces="application/json")
     @ResponseStatus(code = HttpStatus.ACCEPTED)
     public Iterable<ErrosEntity> listByLevel(@PathVariable LevelEnum level) {
     	return jpaRepository.findByLevel(level);
