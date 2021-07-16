@@ -1,12 +1,16 @@
-# Central de Erros
+# Aceleração em Java
+
+## Projeto: Central de Erros
+
 
 ## Objetivo
+
 Em projetos modernos é cada vez mais comum o uso de arquiteturas baseadas em serviços ou microsserviços. Nestes ambientes complexos, erros podem surgir em diferentes camadas da aplicação (backend, frontend, mobile, desktop) e mesmo em serviços distintos. Desta forma, é muito importante que os desenvolvedores possam centralizar todos os registros de erros em um local, de onde podem monitorar e tomar decisões mais acertadas. Neste projeto vamos implementar uma API Rest para centralizar registros de erros de aplicações.
 
 Abaixo estão os requisitos desta API, o time terá total liberdade para tomar as decisões técnicas e de arquitetura da API, desde que atendam os requisitos abaixo.
 
-## API
 
+## API
 
 *Tecnologia*
 - Utilizar a tecnologia base da aceleração para o desenvolvimento (Exemplo: Java, Node.js)
@@ -25,3 +29,22 @@ Abaixo estão os requisitos desta API, o time terá total liberdade para tomar a
 - Deve suportar Ordenação por diferentes tipos de atributos
 - A consulta de listagem não deve retornar os LOGs dos Eventos
 - Deve permitir a busca de um evento por um ID, dessa maneira exibindo o LOG desse evento em específico
+
+
+## Tecnologias utilizadas
+
+* Java 11
+* SpringBoot
+* Spring Data Jpa
+* Maven
+* Lombok
+* MySql database
+* Swagger
+* Spring Fox
+* Oauth
+* React
+* Bibliotecas: chakra-ui e codesandbox-io
+* Junit
+* Heroku
+* <a href="https://trello.com/b/mdnufyaX/central-de-erros" target="_blank">Trello</a>
+* <a href="https://drive.google.com/file/d/1JQi0kRQ1SySDwn35S1jA5TmXY94W_kri/view?usp=sharing" target="_blank">Excalidraw - Desenho telas</a>
