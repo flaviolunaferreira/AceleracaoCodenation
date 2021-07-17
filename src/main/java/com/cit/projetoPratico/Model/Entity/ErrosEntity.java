@@ -9,6 +9,8 @@ import javax.persistence.Id;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,6 +19,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonView(Views.Public.class)
 public class ErrosEntity {
 
 	@Id
@@ -25,6 +28,7 @@ public class ErrosEntity {
 	
 	private LevelEnum level;
 	private String description;
+	@JsonView(Views.Log.class)
 	private String log;
 	private String origin;
 	private LocalDate date;
