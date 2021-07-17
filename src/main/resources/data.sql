@@ -1,4 +1,4 @@
-INSERT INTO tableerros.erros_entity (date, description, level, log, origin) VALUES
+INSERT INTO erros_entity (date, description, level, log, origin) VALUES
 ('2021-07-16', 'Alerta de segurança', '1', 'Tentativa de acesso indevida', 'Funerária Tudo de bom'),
 ('2021-07-16', 'Alerta de segurança', '1', 'Tentativa de acesso indevida', 'Funerária Tudo de bom'),
 ('2021-07-16', 'Alerta de segurança', '1', 'Tentativa de acesso indevida', 'Funerária Tudo de bom'),
@@ -42,5 +42,5 @@ INSERT INTO tableerros.erros_entity (date, description, level, log, origin) VALU
 ('2021-07-01', 'Tentativa de acesso frustrada', '0', 'Usuário tentou acessar sem autorização', 'Comercial Golfinho');
 
 
-INSERT INTO tableerros.user_entity (name, email, password) VALUES
+INSERT INTO user_entity (name, email, password) VALUES
 ('admin-api-erros', 'admin-dono@gmail.com', '12345678q');

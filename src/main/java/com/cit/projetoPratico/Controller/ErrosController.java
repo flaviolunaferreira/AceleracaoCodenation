@@ -1,7 +1,5 @@
 package com.cit.projetoPratico.Controller;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -12,9 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,8 +21,10 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.cit.projetoPratico.Model.Entity.ErrosEntity;
 import com.cit.projetoPratico.Model.Entity.LevelEnum;
+import com.cit.projetoPratico.Model.Entity.Views;
 import com.cit.projetoPratico.Model.Repository.ErrosJpaRepository;
 import com.cit.projetoPratico.Model.Repository.ErrosRepository;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -44,6 +42,7 @@ public class ErrosController {
 	@ApiOperation(value="Save a new error")
 	@RequestMapping(value = "/", method =  RequestMethod.POST, produces="application/json", consumes="application/json")
 	@ResponseStatus(code = HttpStatus.CREATED )
+	@JsonView(Views.Public.class)
 	public ErrosEntity saveErros(@RequestBody ErrosEntity errosEntity) {
 		repository.save(errosEntity);
 		return errosEntity;
@@ -52,6 +51,7 @@ public class ErrosController {
 	@ApiOperation(value="Receive a list of errors by page number and number of items")
 	@RequestMapping(value = "/{pageNumber}/{itens}", method =  RequestMethod.GET, produces="application/json")
 	@ResponseBody
+	@JsonView(Views.Public.class)
 	public Iterable<ErrosEntity> findAllPage(@PathVariable int pageNumber,@PathVariable int itens) {
 		if (itens > 50 ) itens = 50;
 		Pageable page = PageRequest.of(pageNumber, itens);
@@ -61,6 +61,7 @@ public class ErrosController {
 	@ApiOperation(value="Receive a list of errors with the description matching a string")
 	@RequestMapping(value = "/descricao/{string}", method =  RequestMethod.GET, produces="application/json")
 	@ResponseBody
+	@JsonView(Views.Public.class)
 	public Iterable<ErrosEntity> findByDescription(@PathVariable String string) {
 		return repository.findByDescriptionContainingIgnoreCase(string);
 	}
@@ -68,6 +69,7 @@ public class ErrosController {
 	@ApiOperation(value="Receive an error by id")
 	@RequestMapping(value = "/id/{id}", method =  RequestMethod.GET, produces="application/json")
 	@ResponseBody
+	@JsonView(Views.Log.class)
 	public ErrosEntity getErrosById(@PathVariable Long id) { 			
 		return repository.findById(id).orElseThrow( () -> 
 		new ResponseStatusException(HttpStatus.NOT_FOUND, "Erro não encontrado"));
@@ -76,6 +78,7 @@ public class ErrosController {
 	@ApiOperation(value="Receive a list of errors filtered by attribute",
 			notes="Use optional params to filter the request (api/filter/{pageNumber}/{itens}?{attribute}={string})")
 	@RequestMapping(value = "filter/{pageNumber}/{itens}", method =  RequestMethod.GET, produces="application/json")
+	@JsonView(Views.Public.class)
     public ResponseEntity<?> find( ErrosEntity filtro, @PathVariable int pageNumber,@PathVariable int itens ){
     	
 		if (itens > 50 ) itens = 50;
@@ -94,19 +97,8 @@ public class ErrosController {
 	@ApiOperation(value="Receive a list of errors filtered by level type")
 	@RequestMapping(value = "/level/{level}", method =  RequestMethod.GET, produces="application/json")
     @ResponseStatus(code = HttpStatus.ACCEPTED)
+	@JsonView(Views.Public.class)
     public Iterable<ErrosEntity> listByLevel(@PathVariable LevelEnum level) {
     	return jpaRepository.findByLevel(level);
     }
-    
-//    public ResponseEntity<?> resumo() {    	
-//    	Optional<ErrosEntity> erros = jpaRepository.findByLevel(LevelEnum.ERROR);
-//    	Optional<ErrosEntity> worning = jpaRepository.findByLevel(LevelEnum.WARNING);
-//    	Optional<ErrosEntity> info = jpaRepository.findByLevel(LevelEnum.INFO);
-//    	
-//
-//    	
-//    	return ResponseEntity.ok(erros);
-//    }
-    
-	
 }

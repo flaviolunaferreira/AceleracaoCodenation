@@ -46,8 +46,8 @@ Abaixo estão os requisitos desta API, o time terá total liberdade para tomar a
 * Bibliotecas: chakra-ui e codesandbox-io
 * Junit
 * Heroku
-* <a href="https://trello.com/b/mdnufyaX/central-de-erros" target="_blank">Trello</a>
-* <a href="https://drive.google.com/file/d/1JQi0kRQ1SySDwn35S1jA5TmXY94W_kri/view?usp=sharing" target="_blank">Excalidraw - Desenho telas</a>
+* Trello [Link](https://trello.com/b/mdnufyaX/central-de-erros)
+* Excalidraw [Link - desenho telas](https://drive.google.com/file/d/1JQi0kRQ1SySDwn35S1jA5TmXY94W_kri/view?usp=sharing)
 
 
 ## Instalação
@@ -56,14 +56,22 @@ Abaixo estão os requisitos desta API, o time terá total liberdade para tomar a
 ```bash
 $ git clone https://github.com/flaviolunaferreira/AceleracaoCodenation
 ```
-- No arquivo 'application.properties':
-Informe seu username e password no MySql.
 
-- No banco de dados (usamos Workbench):
+- Instale o Maven:
+[https://maven.apache.org/install.html](https://maven.apache.org/install.html).
+
+- Entre na pasta do projeto:
+```bash
+$ cd squad-1-ad-java-e-vue-online-ca-back
+```
+- No arquivo 'application.properties':
+Informe seu username e password do Postgres.
+
+- No banco de dados (usamos o pgAdmin):
 [x] Criar o Schema 'tableerros';
 
-- Iniciar o projeto (usamoms Eclipse):
-Botão direito sobre o projeto -> Run as -> Java application
+- Iniciar o projeto:
+mvn spring-boot:run
 
 - Para testar se a aplicação está em execução, acesse o endereço ```http://localhost:8080/user``` ou utilize o Insomnia/Postman
 
@@ -82,6 +90,7 @@ Após executar a aplicação, você poderá acessar a documentação da API, con
 
 # Deploy
 
+O deploy da aplicação foi efetuado no Heroku e está disponível no endereço: ```https://cryptic-beach-76961.herokuapp.com/```.
 
 
 ## Autores
