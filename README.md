@@ -48,3 +48,85 @@ Abaixo estão os requisitos desta API, o time terá total liberdade para tomar a
 * Heroku
 * <a href="https://trello.com/b/mdnufyaX/central-de-erros" target="_blank">Trello</a>
 * <a href="https://drive.google.com/file/d/1JQi0kRQ1SySDwn35S1jA5TmXY94W_kri/view?usp=sharing" target="_blank">Excalidraw - Desenho telas</a>
+
+
+## Instalação
+
+- Clone o projeto:
+```bash
+$ git clone https://github.com/flaviolunaferreira/AceleracaoCodenation
+```
+- No arquivo 'application.properties':
+Informe seu username e password no MySql.
+
+- No banco de dados (usamos Workbench):
+[x] Criar o Schema 'tableerros';
+
+- Iniciar o projeto (usamoms Eclipse):
+Botão direito sobre o projeto -> Run as -> Java application
+
+- Para testar se a aplicação está em execução, acesse o endereço ```http://localhost:8080/user``` ou utilize o Insomnia/Postman
+
+
+# Documentação com Swagger
+Após executar a aplicação, você poderá acessar a documentação da API, contendo os endpoints implementados, no endereço ```http://localhost:8080/swagger-ui.html```.
+
+
+# Vendo funcionar com exemplo prático
+
+- Copiei o arquivo 'data' disponibilizado na pasta 'resources' do projeto;
+- E cole em uma Query do Workbench e o execute;
+- Após o Bando de dados populado, poderá ver funcionando no frontEnd que disponibilizamos no Link: 
+- [FrontEnd api de erros](https://github.com/flaviolunaferreira/central-de-erros/tree/master)
+
+
+# Deploy
+
+
+
+## Autores
+
+<table>
+<tr>
+<td align="center">
+<a href="https://github.com/DanielePerse">
+<img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/66958813?v=4" width="100px;" alt=""/><br />
+<a href="https://www.linkedin.com/in/daniele-perse">
+<img style="height: 20px" alt="LinkedIn" src="https://img.shields.io/badge/Daniele Perse-0077B5?logo=LinkedIn&logoColor=white&style=for-the-badge" />
+</a>
+</td>
+<td align="center">
+<a href="https://github.com/flaviolunaferreira">
+<img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/40308391?v=4" width="100px;" alt=""/><br />
+</a>
+<a href="https://www.linkedin.com/in/flavio-luna-ferreira-9b4812165/">
+<img style="height: 20px" alt="LinkedIn" src="https://img.shields.io/badge/theCoyote-0077B5?logo=LinkedIn&logoColor=white&style=for-the-badge" />
+</a>
+</td>
+<td align="center">
+<a href="https://github.com/Darthurmoura">
+<img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/54224755?v=4" width="100px;" alt=""/><br />
+</a>
+<a href="https://www.linkedin.com/in/darthurmoura/">
+<img style="height: 20px" alt="LinkedIn" src="https://img.shields.io/badge/Daniel Moura-0077B5?logo=LinkedIn&logoColor=white&style=for-the-badge" />
+</a>
+</td>
+<td align="center">
+<a href="https://github.com/josiasviveiro">
+<img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/62304302?v=4" width="100px;" alt=""/><br />
+</a>
+<a href="https://www.linkedin.com/in/josias-danny-de-viveiro">
+<img style="height: 20px" alt="LinkedIn" src="https://img.shields.io/badge/Josias Viveiro-0077B5?logo=LinkedIn&logoColor=white&style=for-the-badge" />
+</a>
+</td>
+<td align="center">
+<a href="https://github.com/JorgeHSOsiro">
+<img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/34973260?v=4" width="100px;" alt=""/><br />
+</a>
+<a href="https://www.linkedin.com/in/jorge-osiro/">
+<img style="height: 20px" alt="LinkedIn" src="https://img.shields.io/badge/Jorge Osiro-0077B5?logo=LinkedIn&logoColor=white&style=for-the-badge" />
+</a>
+</td>
+
+</tr>
+</table>
