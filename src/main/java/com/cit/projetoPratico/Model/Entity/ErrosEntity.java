@@ -24,13 +24,17 @@ public class ErrosEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(Views.Public.class)
 	private Long id;
-	
+	@JsonView(Views.Public.class)
 	private LevelEnum level;
+	@JsonView(Views.Public.class)
 	private String description;
 	@JsonView(Views.Log.class)
 	private String log;
+	@JsonView(Views.Public.class)
 	private String origin;
+	@JsonView(Views.Public.class)
 	private LocalDate date;
 		
 }

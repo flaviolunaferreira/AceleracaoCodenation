@@ -42,6 +42,7 @@ public class ErrosController {
 	@ApiOperation(value="Save a new error")
 	@RequestMapping(value = "/", method =  RequestMethod.POST, produces="application/json", consumes="application/json")
 	@ResponseStatus(code = HttpStatus.CREATED )
+	@JsonView(Views.Public.class)
 	public ErrosEntity saveErros(@RequestBody ErrosEntity errosEntity) {
 		repository.save(errosEntity);
 		return errosEntity;
