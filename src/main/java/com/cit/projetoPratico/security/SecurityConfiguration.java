@@ -38,10 +38,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                                    "/configuration/ui",
                                    "/swagger-resources/**",
                                    "/configuration/security",
-                                   "/swagger-ui.html/**",
                                    "/swagger-ui.html",
                                    "/webjars/**",
-                                   "/user/");
+                                   "/user/",
+                                   "/api/");
         web.ignoring().antMatchers(HttpMethod.OPTIONS, "/oauth/**");
     }
 	
