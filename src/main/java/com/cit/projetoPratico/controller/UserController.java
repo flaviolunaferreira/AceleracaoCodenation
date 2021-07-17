@@ -1,4 +1,4 @@
-package com.cit.projetoPratico.Controller;
+package com.cit.projetoPratico.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.cit.projetoPratico.Model.Entity.UserEntity;
-import com.cit.projetoPratico.Model.Repository.UserRepository;
+import com.cit.projetoPratico.model.entity.UserEntity;
+import com.cit.projetoPratico.model.repository.UserRepository;
 
 import io.swagger.annotations.ApiOperation;
 

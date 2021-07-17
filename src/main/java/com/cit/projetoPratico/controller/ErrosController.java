@@ -1,4 +1,4 @@
-package com.cit.projetoPratico.Controller;
+package com.cit.projetoPratico.controller;
 
 import java.util.Optional;
 
@@ -23,10 +23,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.cit.projetoPratico.Model.Entity.ErrosEntity;
-import com.cit.projetoPratico.Model.Entity.LevelEnum;
-import com.cit.projetoPratico.Model.Repository.ErrosJpaRepository;
-import com.cit.projetoPratico.Model.Repository.ErrosRepository;
+import com.cit.projetoPratico.model.entity.ErrosEntity;
+import com.cit.projetoPratico.model.entity.LevelEnum;
+import com.cit.projetoPratico.model.repository.ErrosJpaRepository;
+import com.cit.projetoPratico.model.repository.ErrosRepository;
 
 import io.swagger.annotations.ApiOperation;
 

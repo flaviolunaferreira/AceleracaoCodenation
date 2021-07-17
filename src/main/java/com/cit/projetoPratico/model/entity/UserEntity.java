@@ -1,4 +1,4 @@
-package com.cit.projetoPratico.Model.Entity;
+package com.cit.projetoPratico.model.entity;
 
 import java.util.Arrays;
 import java.util.Collection;

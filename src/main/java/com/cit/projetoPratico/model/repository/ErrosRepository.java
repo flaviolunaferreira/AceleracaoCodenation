@@ -1,9 +1,9 @@
-package com.cit.projetoPratico.Model.Repository;
+package com.cit.projetoPratico.model.repository;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
-import com.cit.projetoPratico.Model.Entity.ErrosEntity;
+import com.cit.projetoPratico.model.entity.ErrosEntity;
 
 @Repository
 public interface ErrosRepository extends PagingAndSortingRepository<ErrosEntity, Long> {
