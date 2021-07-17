@@ -74,7 +74,7 @@ Após executar a aplicação, você poderá acessar a documentação da API, con
 
 # Vendo funcionar com exemplo prático
 
-- Copiei o arquivo 'data' disponibilizado na pasta 'resources' do projeto;
+- Copie o arquivo 'data' disponibilizado na pasta 'resources' do projeto;
 - E cole em uma Query do Workbench e o execute;
 - Após o Bando de dados populado, poderá ver funcionando no frontEnd que disponibilizamos no Link: 
 - [FrontEnd api de erros](https://github.com/flaviolunaferreira/central-de-erros/tree/master)
