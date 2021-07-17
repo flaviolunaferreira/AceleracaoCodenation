@@ -19,7 +19,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonView(Views.Public.class)
 public class ErrosEntity {
 
 	@Id
