@@ -41,6 +41,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                                    "/swagger-ui.html",
                                    "/webjars/**",
                                    "/user/",
+                                   "/api/",
                                    "/api/**");
         web.ignoring().antMatchers(HttpMethod.OPTIONS, "/oauth/**");
     }
