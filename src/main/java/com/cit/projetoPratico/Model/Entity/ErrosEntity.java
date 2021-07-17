@@ -20,9 +20,7 @@ import lombok.NoArgsConstructor;
 public class ErrosEntity {
 
 	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@GeneratedValue(generator = "increment")
-	@GenericGenerator(name = "increment", strategy = "increment" )
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	private LevelEnum level;
