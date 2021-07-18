@@ -1,5 +1,8 @@
 package com.cit.projetoPratico.Controller;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -7,6 +10,7 @@ import org.springframework.data.domain.ExampleMatcher.StringMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -76,26 +81,49 @@ public class ErrosController {
 	}
 	
 	@ApiOperation(value="Receive a list of errors filtered by attribute",
-			notes="Use optional params to filter the request (api/filter/{pageNumber}/{itens}?{attribute}={string})")
-	@RequestMapping(value = "filter/{pageNumber}/{itens}", method =  RequestMethod.GET, produces="application/json")
+			notes="Use optional params to filter the request " + 
+	"(api/filter/{pageNumber}/{itens}?{attribute}={string}). " +
+				"Additionally, you may sort the response by multiple attributes, " +
+				"using {?sort=[attribute;[ASC or DESC]]} for each.")
+	@RequestMapping(value = "filter/{pageNumber}/{itens}", 
+	method =  RequestMethod.GET, produces="application/json")
+	@ResponseBody
 	@JsonView(Views.Public.class)
-    public ResponseEntity<?> find( ErrosEntity filtro, @PathVariable int pageNumber,@PathVariable int itens ){
-    	
+    public ResponseEntity<?> find(ErrosEntity filtro, 
+    		@PathVariable int pageNumber, 
+    		@PathVariable int itens,
+    		@RequestParam(value="sort", defaultValue="id;ASC", 
+    		required=false) String[] sort) {
 		if (itens > 50 ) itens = 50;
-		Pageable page = PageRequest.of(pageNumber, itens);
 		
+//		As seen on https://stackoverflow.com/q/54774350
+		Sort allSorts = Sort.by(
+		        Arrays.stream(sort)
+		                .map(sortBy -> sortBy.split(";", 2))
+		                .map(array ->
+		                        new Sort.Order(
+		                        		(array[1].equalsIgnoreCase("DESC") ? 
+		                        				Sort.Direction.DESC : 
+		                        					Sort.Direction.ASC), 
+		                        		array[0]).ignoreCase()
+		                ).collect(Collectors.toList())
+		);
+		
+		Pageable page = PageRequest.of(pageNumber, itens, allSorts);
         ExampleMatcher matcher = ExampleMatcher.matching()
         							.withIgnoreNullValues()
                                     .withIgnoreCase()
-                                    .withStringMatcher(StringMatcher.CONTAINING);
-
+                                    .withStringMatcher(StringMatcher
+                                    		.CONTAINING);
+        
         Example<ErrosEntity> example = Example.of(filtro, matcher);
         Page<ErrosEntity> lista = jpaRepository.findAll(example, page);
         return ResponseEntity.ok(lista);
     }
 	
 	@ApiOperation(value="Receive a list of errors filtered by level type")
-	@RequestMapping(value = "/level/{level}", method =  RequestMethod.GET, produces="application/json")
+	@RequestMapping(value = "/level/{level}", method =  RequestMethod.GET, 
+	produces="application/json")
     @ResponseStatus(code = HttpStatus.ACCEPTED)
 	@JsonView(Views.Public.class)
     public Iterable<ErrosEntity> listByLevel(@PathVariable LevelEnum level) {

@@ -1,12 +1,11 @@
 # Aceleração em Java
 
-## Projeto: Central de Erros
 
+## Projeto: Central de Erros
 
 ## Objetivo
 
 Em projetos modernos é cada vez mais comum o uso de arquiteturas baseadas em serviços ou microsserviços. Nestes ambientes complexos, erros podem surgir em diferentes camadas da aplicação (backend, frontend, mobile, desktop) e mesmo em serviços distintos. Desta forma, é muito importante que os desenvolvedores possam centralizar todos os registros de erros em um local, de onde podem monitorar e tomar decisões mais acertadas. Neste projeto vamos implementar uma API Rest para centralizar registros de erros de aplicações.
-
 Abaixo estão os requisitos desta API, o time terá total liberdade para tomar as decisões técnicas e de arquitetura da API, desde que atendam os requisitos abaixo.
 
 
@@ -14,12 +13,10 @@ Abaixo estão os requisitos desta API, o time terá total liberdade para tomar a
 
 *Tecnologia*
 - Utilizar a tecnologia base da aceleração para o desenvolvimento (Exemplo: Java, Node.js)
-
 *Premissas*
 - A API deve ser pensada para atender diretamente um front-end
 - Deve ser capaz de gravar os logs de erro em um banco de dados relacional
 - O acesso a ela deve ser permitido apenas por requisições que utilizem um token de acesso válido
-
 *Funcionalidades*
 - Deve permitir a autenticação do sistema que deseja utilizar a API gerando o Token de Acesso
 - Pode ser acessado por multiplos sistemas
@@ -59,7 +56,6 @@ $ git clone https://github.com/flaviolunaferreira/AceleracaoCodenation
 
 - Instale o Maven:
 [https://maven.apache.org/install.html](https://maven.apache.org/install.html).
-
 - Entre na pasta do projeto:
 ```bash
 $ cd squad-1-ad-java-e-vue-online-ca-back
