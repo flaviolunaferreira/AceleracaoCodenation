@@ -67,13 +67,13 @@ $ cd squad-1-ad-java-e-vue-online-ca-back
 - No arquivo 'application.properties':
 Informe seu username e password do Postgres.
 
-- No banco de dados (usamos o pgAdmin):
-[x] Criar o Schema 'tableerros';
+- No banco de dados (usamos o postgres):
+[x] Criar o Database 'tableerros' (usamos o pgAdmin);
 
 - Iniciar o projeto:
 mvn spring-boot:run
 
-- Para testar se a aplicação está em execução, acesse o endereço ```http://localhost:8080/user``` ou utilize o Insomnia/Postman
+- Para testar se a aplicação está em execução, acesse o endereço ```http://localhost:8080/user/``` ou utilize o Insomnia/Postman. Deverá retornar um array vazio.
 
 
 # Documentação com Swagger
@@ -82,10 +82,9 @@ Após executar a aplicação, você poderá acessar a documentação da API, con
 
 # Vendo funcionar com exemplo prático
 
-- Copie o arquivo 'data' disponibilizado na pasta 'resources' do projeto;
-- E cole em uma Query do Workbench e o execute;
-- Após o Bando de dados populado, poderá ver funcionando no frontEnd que disponibilizamos no Link: 
-- [FrontEnd api de erros](https://github.com/flaviolunaferreira/central-de-erros/tree/master)
+- Copie o arquivo 'import' disponibilizado na pasta 'resources' do projeto;
+- Cole em uma Query do PgAdmin e o execute;
+- Após o Banco de dados populado, poderá ver funcionando no frontEnd que disponibilizamos no Link: [FrontEnd api de erros](https://github.com/flaviolunaferreira/central-de-erros/tree/master)
 
 
 # Deploy
