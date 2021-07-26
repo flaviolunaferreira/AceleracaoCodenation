@@ -34,6 +34,6 @@ public class ErrosEntity {
 	@JsonView(Views.Public.class)
 	private String origin;
 	@JsonView(Views.Public.class)
-	private LocalDate date;
+	private String date;
 		
 }
